@@ -25,3 +25,9 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+.bg-sulek {
+  background-size: cover;
+  background-position: center;
+  background-image: url("../public/bg.webp");
+  background-repeat: no-repeat;
+}

@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-// import ImcBox from "./components/imcBox/imc-box";
 
 export default function Home() {
   const [weight, setWeight] = useState();
@@ -17,14 +16,6 @@ export default function Home() {
     console.log(Math.round(calc));
   };
 
-  // const imcBox =
-
-  // if (imc < 18.5) {
-
-  // }
-  // if ((imc > 18.5) & (imc < 24.9)) {
-  //   return <div className="bg-blue-400">{imc}</div>;
-  // }
   const imcRanges = [
     {
       id: "bajoPeso",
@@ -104,12 +95,12 @@ export default function Home() {
     }
   };
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <div className="p-3 rounded-lg backdrop-blur-md flex flex-row justify-between items-center w-2/4 h-[60vh]">
+    <main className="flex min-h-screen flex-col items-start justify-center p-12">
+      <h1 className="font-bold text-5xl lg:text-8xl">Calculadora IMC</h1>
+      <div className="rounded-lg backdrop-blur-md flex flex-row justify-start items-center w-2/4 h-[60vh]">
         <div className="flex flex-col justify-start items-start h-[25vh]">
-          <h1 className="font-bold text-3xl">Calculadora IMC</h1>
-          <div className="flex flex-col  mt-5">
-            <label htmlFor="weight" className="text-xl font-semibold">
+          <div className="flex flex-col  mt-5 mb-7">
+            <label htmlFor="weight" className="text-2xl font-semibold">
               Peso(Kg)
             </label>
             <input
@@ -118,8 +109,8 @@ export default function Home() {
               onChange={(e) => setWeight(e.target.value)}
             />
           </div>
-          <div className="flex flex-col mb-3 mt-3">
-            <label htmlFor="height" className="text-xl font-semibold">
+          <div className="flex flex-col  mt-3">
+            <label htmlFor="height" className="text-2xl font-semibold">
               Altura(m){" "}
               <p className="text-gray-200 text-sm">por ejempo: 1.75</p>
             </label>
@@ -131,7 +122,7 @@ export default function Home() {
           </div>
 
           <button
-            className="py-2 px-3 bg-zinc-700 text-white rounded-lg hover:text-black hover:bg-white duration-150 font-semibold "
+            className="py-2 px-3 mt-7 text-xl bg-zinc-900 text-white rounded-lg hover:text-black hover:bg-white duration-150 font-semibold "
             onClick={() => handleSubmit()}
           >
             Calcular
