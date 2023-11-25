@@ -11,9 +11,10 @@ export default function Home() {
   const handleSubmit = () => {
     const den = height * height;
     const calc = weight / den;
+    const rounded = Math.round(calc * 10) / 10;
 
-    setIMC(Math.round(calc));
-    console.log(Math.round(calc));
+    setIMC(rounded);
+    console.log(rounded);
   };
 
   const imcRanges = [
@@ -51,35 +52,35 @@ export default function Home() {
     if (imc === undefined) {
       return <div></div>;
     }
-    if (imc < 18.5) {
+    if (imc <= 18.5) {
       return (
         <div className="bg-blue-400 p-3 rounded-lg mt-3">
           {imcRanges[0].label}
         </div>
       );
     }
-    if ((imc > 18.5) & (imc < 24.9)) {
+    if ((imc >= 18.5) & (imc <= 24.9)) {
       return (
         <div className="bg-green-500 p-3 rounded-lg mt-3">
           {imcRanges[1].label}
         </div>
       );
     }
-    if ((imc > 25) & (imc < 29.9)) {
+    if ((imc >= 25) & (imc <= 29.9)) {
       return (
         <div className="bg-yellow-600 p-3 rounded-lg mt-3">
           {imcRanges[2].label}
         </div>
       );
     }
-    if ((imc > 30) & (imc < 34.9)) {
+    if ((imc >= 30) & (imc <= 34.9)) {
       return (
         <div className="bg-orange-600 p-3 rounded-lg mt-3">
           {imcRanges[3].label}
         </div>
       );
     }
-    if ((imc > 35) & (imc < 39.9)) {
+    if ((imc >= 35) & (imc <= 39.9)) {
       return (
         <div className="bg-orange-700 p-3 rounded-lg mt-3">
           {imcRanges[4].label}
@@ -96,45 +97,52 @@ export default function Home() {
   };
   return (
     <main className="flex min-h-screen flex-col items-start justify-center p-12">
-      <h1 className="font-bold text-5xl lg:text-8xl">Calculadora IMC</h1>
-      <div className="rounded-lg backdrop-blur-md flex flex-row justify-start items-center w-2/4 h-[60vh]">
-        <div className="flex flex-col justify-start items-start h-[25vh]">
-          <div className="flex flex-col  mt-5 mb-7">
-            <label htmlFor="weight" className="text-2xl font-semibold">
-              Peso(Kg)
-            </label>
-            <input
-              type="number"
-              className=" border rounded-md border-gray-600 p-1 text-lg text-black"
-              onChange={(e) => setWeight(e.target.value)}
-            />
-          </div>
-          <div className="flex flex-col  mt-3">
-            <label htmlFor="height" className="text-2xl font-semibold">
-              Altura(m){" "}
-              <p className="text-gray-200 text-sm">por ejempo: 1.75</p>
-            </label>
-            <input
-              type="number"
-              className="border rounded-md border-gray-600 p-1 text-lg text-black"
-              onChange={(e) => setHeight(e.target.value)}
-            />
-          </div>
+      <div className="w-full flex justify-center lg:justify-start">
+        <h1 className="font-bold text-4xl lg:text-8xl text-center">
+          Calculadora IMC
+        </h1>
+      </div>
 
+      <section className="rounded-lg  flex xl:flex-row flex-col justify-between items-center w-full lg:w-2/4">
+        <aside>
+          <div className="flex flex-col justify-center items-center lg:justify-start lg:items-start h-[25vh]">
+            <div className="flex flex-col  mt-5 mb-7">
+              <label htmlFor="weight" className="text-2xl font-semibold">
+                Peso(Kg)
+              </label>
+              <input
+                type="number"
+                className=" border rounded-md border-gray-600 p-1 text-lg text-black"
+                onChange={(e) => setWeight(e.target.value)}
+              />
+            </div>
+            <div className="flex flex-col  mt-3">
+              <label htmlFor="height" className="text-2xl font-semibold">
+                Altura(m){" "}
+                <p className="text-gray-200 text-sm">por ejempo: 1.75</p>
+              </label>
+              <input
+                type="number"
+                className="border rounded-md border-gray-600 p-1 text-lg text-black"
+                onChange={(e) => setHeight(e.target.value)}
+              />
+            </div>
+          </div>
           <button
             className="py-2 px-3 mt-7 text-xl bg-zinc-900 text-white rounded-lg hover:text-black hover:bg-white duration-150 font-semibold "
             onClick={() => handleSubmit()}
           >
             Calcular
           </button>
-        </div>
-        <div className="w-2/4 flex justify-center items-center">
+        </aside>
+
+        <div className="w-full lg:w-2/4 flex justify-center items-center lg:mt-0 mt-12">
           <h3 className="text-6xl font-semibold text-center">
             {isNaN(imc) ? "" : imc}
             {isNaN(imc) ? "" : <ImcBox />}
           </h3>
         </div>
-      </div>
+      </section>
     </main>
   );
 }
